@@ -93,3 +93,47 @@ Vemos como imprimir int o float:
     printf("%d", int);      // imprime int
     printf("%.2f", float);      // imprime float con dos decimales
 ```
+
+### Inicializacion
+
+Podemos encontrarnos que hay variables que se inicializan a cero y otras que no lo hacen. Intentar acceder a una variable no inicializada dara lugar a valores imprevisibles.
+Se puede declarar una variable e inicializarla en la misma linea con lo que se llama un "inicializador".
+
+### Leer input
+
+Para leer datos de usuario es util la funcion `scanf()`. Al igual que con `printf()` es necesario especificar el formato, en este caso de lo que va a leer.
+
+```c
+scanf('%d', &i)   // lee un entero y lo almacena en la direccion donde esta i
+```
+
+El uso de scanf requiere controlar la introduccion de otros tipos de datos.
+
+### Definir constantes
+
+Es buena idea asignar un nombre a una constante. Se puede hacer con *Macro definitions*
+
+`#define INCHES_PER_POUND 166`
+
+El prepocesador substituira cualquier aparicion de la macro por el numero. El uso de mayusculas no es obligatorio pero es una convencion
+
+
+### Identificadores
+
+Los identificadores son nombres dados a variables, funciones, macros... Deben empezar con una letra o guion bajo y continuar con letras, guiones bajos o numeros.
+C diferencia entre mayusculas y minusculas.
+
+### Tokens
+
+Se puede pensar en un programa en C como una serie de tokens, grupos de caracteres que no pueden ser cambiados sin que cambie su significado. Son tokens los identificadores, las palabras claves o los signos de puntuacion.
+
+### Encontrar errores con gcc
+
+-Wall
+-W
+-pedantic
+-ansi
+-std=c89
+-std=c99
+
+
