@@ -1,6 +1,6 @@
 /**********************************************************
- * Enter a dollar ammount and shows how to pay it using   *
- * 20, 10, 5 and 1 bill                                   *
+ * Enter a value x and compute the value of a polynomial  *
+ * using Horner's rule
  **********************************************************/
 
 #include <stdio.h>
