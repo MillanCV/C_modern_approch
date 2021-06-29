@@ -70,3 +70,83 @@ Si es short se debe anteponer h antes de d, u, o, x
 Si es long se debe anteponer l antes de d, u, o, x
 Si es long long se antepone ll.
 
+
+# Floating types
+
+A veces es necesario almacenar numeros con digitos despues del punto decimal. Estos se almacenan en formato floating.
+C tiene tres tipos floating diferentes
+
+* float, single-precision
+* double, precision- doble
+* long-double, precision extendida.
+
+cada uno aporta una precision mayor.
+
+## Floating constants
+
+Se pueden escribir de muchas formas:
+
+```57.0 57. 57.0e0 57E0 5.7e1 5.7e+1 .57e2 570.e-1```
+
+Debe contener una parte decimal y/o un exponent. El exponente indica la potencia de 10 por la cual el numero es escalarado. Si un exponente esta presente debe ser precedido por la letra e o E. + o - despues del exponente son posibles.
+
+Por defecto se almacenan como doubles. Si es necesario double values se convierten automaticamente a float.
+Cuando sea necesario forzar al compilador a almacenar float o long float se debe indicar con una F o f al funal de la constante.
+
+## Leyendo y escribiendo floating-point numeros
+
+* Para escribir y leer single-precision usamos %e, %f y %g.
+* para leer doubles usamos scanf("%lf", &d)
+* para escribir doubles se puede usar %e, %f y %g.
+* para leer o escribir long doubles usamos %Lf, %Le o %Lg.
+
+# Caracteres
+
+El tercer tipo basico son los caracteres. Estos pueden variar de una maquina a otra, porque pueden tener diferentes sets de caracteres.
+
+C trata los caracters como small integers. Cuando un caracter aparece en una computacion, C simplemente usa el valor entero.
+
+Se pueden comparar igual que los numeros.
+
+Se debe tener en cuenta que hacer operaciones aritmeticas sobre caracteres puede conducir a programas no portables, debido a que las maquinas pueden tener diferentes sets de caracteres.
+
+## caracteres con signo y sin signo
+
+Dado que c permite tratar los caracters como enteros, no sorprende que los caracteres puedan tener signo. Algunos compiladores tratan el tipo char como signed y otros como unsignes.
+La mayor parte del tiempo carece de importancia. Si fuese necesario se puede especificar usando
+
+```c
+    signed  char sch;
+    unsigned char uch
+```
+
+Para portabilidad no se debe asumir un signo por defecto, es mejor especificarlo.
+
+Dada la cercania entre caracteres y integers, C89 usa el termino Integrals, para referirse a su conjunto. Los tipos enumerados tb lo son.
+En C99 no se usa, son los integers los que engloban a los caracters y los enumendos.
+
+## Aritmetics types
+
+Los tipos integer y floan son conocidos de forma conjunta como tipos aritmeticos.
+
+## Secuencias de escape
+
+Normalmente las constantes caracteres van entre comillas. Pero hay caracteres especiales que son invisibles o que no se pueden teclean. Los escape caracters resuelven este problema.
+
+## Funciones para manejar caracteres
+
+```toupper(char c)``` permite convertir un caracter a mayuscula
+
+es preciso incluir la directiva ```#include <ctype.h>```
+
+## Leer y escribir caracteres con scanf y printf
+
+%c permite leer y escribir un caracter simple.
+Reconoce los espacios en blanco.
+
+## Leer y escribir con getchar y putchar
+getchar y putchar son otros metodos que pueden substituir a scanf y printf. Se almacenan en una variable. Getchar devuelve un int.
+Son mas rapidos que scanf y printf en ejecucion ya que solo trabajan con un tipo de datos y suelen ser implementados como macros.
+Ademas permite construir loops mas condensados donde getchar forme la expresion de control
+
+Hay que ser cuidadoso si se usa scanf y getchar en el mismo programa ya que scanf tiene tendencia a dejar atras caracteres sobre los que pasa pero que no lee, como las nuevas lineas
