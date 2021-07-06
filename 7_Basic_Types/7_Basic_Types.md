@@ -150,3 +150,63 @@ Son mas rapidos que scanf y printf en ejecucion ya que solo trabajan con un tipo
 Ademas permite construir loops mas condensados donde getchar forme la expresion de control
 
 Hay que ser cuidadoso si se usa scanf y getchar en el mismo programa ya que scanf tiene tendencia a dejar atras caracteres sobre los que pasa pero que no lee, como las nuevas lineas
+
+# Type conversion
+
+Los ordenadores son mas restrictivos que C respecto a la aritmetica. Los operandos deben ser normalmente del mismo tamano y estar almacenados de la misma forma. Puede que un ordenador pueda sumar dos enteros de 16 bits directamente, pero no uno de 16 y otro de 32.
+C permite mezclar diferentes tipos en una misma expresion. El compilador puede que genere instrucciones para convertir un operando a otro tipo para que el hardware pueda evaluar la expresion. Para sumar un short y un entero, C convertira el short a entero. 
+Sumar un entero y un float es mas complicado. Son conversiones implicitas. 
+C permite que el programados haga conversiones explicitas usando el operador "cast". 
+Reglas para la conversion implicita de tipos, se realizan en las siguientes situaciones:
+* Cuando los operandos en una operacion aritmetica o logica no tienen el mismo tipo.
+* Cuando el tipo de expresion del lado derecho de una signacion no encaja con el tipo de la variable del lado izquierdo.
+* Cuando el tipo del argument en una funcion no encaja con el tipo correspondiente del parametro.
+* Cuando el tipo de  expresion en return no encaja con el tipo de retorno de la funcion
+
+## Conversiones aritmeticas comunes
+
+Las conversiones aritmeticas tipicas son aplicadas a los operandos de la mayoria de operaciones binarias. Entre dos operandos de tipo distinto, la estrategia habitual es convertir al tipo mas estrecho (con menos bytes) que permita acomodar ambos operandos.
+Entre las conversiones mas comunes esta la "integral promotion", que convierte un caracter o shor a int.
+
+Emergen dos categorias principales de conversiones aritmeticas:
+
+* El tipo de alguno de los operandos es float. Se convierte al mayor.
+float->double->long double
+
+* Ninguno de los operandos es float. Primero se hace integral promotion en los dos operandos, garantizando que ninguno de los dos es short o char, despues:
+int->unsigned int-> long int-> unsigned long int. 
+
+Es recomendable no hacer operaciones entre operandos signed y unsigned.
+
+## Conversion durante la asignacion
+
+La expresion en la parte derecha es convertida al tipo de expresion de la parte izquierda. Si el tipo de la parte izquierda es lo suficientemente ancho funcionara sin problema. En otros casos, como asignar un float a un tipo int, habra problemas como perder la parte fraccional o si esta fuera de los rangos.
+Si no especificamos que una constante float lo es anadiendo el sufijo f se entendera que es double y puede dar warnings.
+
+## Conversiones implicitas en C99
+
+Las reglas son diferentes a causa de los tipos adicionales.
+Cada tipo entero tiene un "integer conversion rank" y pasa de tener integral promotion a  integers promotions.
+
+## Casting
+
+Cast aporta un mayor grado de control a las conversiones, haciendolas explicitas.
+
+
+# Definicion de tipos
+
+Mediante typedef se pueden configurar tipos a conveniencia dandole nuestros propios nombres. Algunos programadores Capitalizan la primera letra del nombre.
+Usar typedef hace que el compilador anada el nuevo nombre a la lista de tipos que reconoce.
+
+Ventajes:
+* Permiten hacer mas entendible un programa al elegir nombres signicativos.
+
+* Permiten modificar mas facilmente programas
+
+## Type definitions y portabilidad
+
+Uno de los problemas de mover un programa de una maquina a otra es que los tipos pueden tener diferentes rangos. Typedef hace que cambiar los tipos sea rapido. No resuelve todos los problemas ya que si se usa printf o scanf habra que cambiar el % correspondiente
+
+# El operador sizeof
+
+sizeof permite que un programa determine cuanta memoria se requiere para almacenar un particular tipo. El valor de ```sizeof {type-name} es un entero unsigner que representa el numero de bytes requeridos para almacenar un valor de type-name..
