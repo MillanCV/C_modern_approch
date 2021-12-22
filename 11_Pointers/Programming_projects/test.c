@@ -1,11 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(){
-    int *p;
+    int *p = malloc(sizeof(int));
 
-    *p = 0;
+    *p = 3;
 
-    printf("content of p is %d\n", *p);
+
+    printf("content of p is %d, address is %p\n", *p, p);
 
     return 0;
 }

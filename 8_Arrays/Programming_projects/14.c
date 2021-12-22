@@ -10,7 +10,7 @@ int main(){
 
     printf("Enter a sentence: ");
     
-    while( (c = getchar()) != EOF ) {
+    while( ( c = getchar() ) != EOF ) {
         if( c == '.' || c == '?' || c == '!') {
             terminating = c;
             break;
